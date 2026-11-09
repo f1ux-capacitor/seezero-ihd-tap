@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="420" viewBox="0 0 900 420" font-family="DejaVu Sans, Helvetica, Arial, sans-serif">
+  <rect width="900" height="420" fill="#ffffff"/>
+  <text x="450" y="38" font-size="24" font-weight="bold" text-anchor="middle" fill="#1d2433">SeeZero IHD  →  ESP32-C3 SuperMini (receive only)</text>
+
+  <!-- IHD board -->
+  <rect x="40" y="80" width="300" height="290" rx="14" fill="#1f7a3a" stroke="#0f4a22" stroke-width="3"/>
+  <text x="190" y="115" font-size="20" font-weight="bold" text-anchor="middle" fill="#ffffff">SeeZero IHD board</text>
+  <text x="190" y="140" font-size="14" text-anchor="middle" fill="#d6f5df">T3ID-A-PCB-002_6 (rear)</text>
+
+  <circle cx="320" cy="190" r="9" fill="#d4a017" stroke="#fff" stroke-width="2"/>
+  <text x="300" y="196" font-size="17" text-anchor="end" fill="#fff">TP1  (5 V from USB)</text>
+  <circle cx="320" cy="260" r="9" fill="#d4a017" stroke="#fff" stroke-width="2"/>
+  <text x="300" y="266" font-size="17" text-anchor="end" fill="#fff">J7 GND  (right pin)</text>
+  <circle cx="320" cy="330" r="9" fill="#d4a017" stroke="#fff" stroke-width="2"/>
+  <text x="300" y="336" font-size="17" text-anchor="end" fill="#fff">J7 TXD  (middle pin)</text>
+
+  <!-- C3 -->
+  <rect x="580" y="80" width="280" height="290" rx="14" fill="#1b1b1f" stroke="#000" stroke-width="3"/>
+  <text x="720" y="115" font-size="20" font-weight="bold" text-anchor="middle" fill="#ffffff">ESP32-C3 SuperMini</text>
+  <text x="720" y="140" font-size="14" text-anchor="middle" fill="#bbbbbb">ESPHome</text>
+
+  <circle cx="600" cy="190" r="9" fill="#c0c0c0" stroke="#fff" stroke-width="2"/>
+  <text x="620" y="196" font-size="17" fill="#fff">5V</text>
+  <circle cx="600" cy="260" r="9" fill="#c0c0c0" stroke="#fff" stroke-width="2"/>
+  <text x="620" y="266" font-size="17" fill="#fff">G</text>
+  <circle cx="600" cy="330" r="9" fill="#c0c0c0" stroke="#fff" stroke-width="2"/>
+  <text x="620" y="336" font-size="17" fill="#fff">GPIO20 (RX)</text>
+  <text x="620" y="360" font-size="13" fill="#ff8a8a">TX (21): leave unconnected</text>
+
+  <!-- wires -->
+  <line x1="329" y1="190" x2="591" y2="190" stroke="#e53935" stroke-width="6"/>
+  <line x1="329" y1="260" x2="591" y2="260" stroke="#222222" stroke-width="6"/>
+  <line x1="329" y1="330" x2="591" y2="330" stroke="#f2c200" stroke-width="6"/>
+  <text x="460" y="180" font-size="14" text-anchor="middle" fill="#e53935">5 V (0 V when unplugged)</text>
+  <text x="460" y="250" font-size="14" text-anchor="middle" fill="#222">GND</text>
+  <text x="460" y="320" font-size="14" text-anchor="middle" fill="#b38f00">3.3 V logic · 3.57 Mbaud 8N1</text>
+
+  <text x="450" y="404" font-size="14" text-anchor="middle" fill="#555">30 AWG silicone wire · insulate the C3 and every joint · power the C3 from the IHD for permanent installs</text>
+</svg>

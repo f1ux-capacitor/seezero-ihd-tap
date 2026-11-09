@@ -1,0 +1,136 @@
+# ESPHome config: ESP32-C3 SuperMini inside a geo SeeZero IHD (board T3ID-A-PCB-002_6)
+# Listens (receive only) to the IHD's internal Zigbee-radio -> display UART and
+# publishes everything the IHD shows to Home Assistant.
+
+substitutions:
+  name: seezero-ihd
+  friendly_name: SeeZero IHD
+
+esphome:
+  name: ${name}
+  friendly_name: ${friendly_name}
+
+esp32:
+  board: esp32-c3-devkitm-1
+  framework:
+    type: esp-idf
+
+# Logs go over the C3's built-in USB, so they never touch the meter UART
+logger:
+  hardware_uart: USB_SERIAL_JTAG
+
+api:
+  encryption:
+    key: !secret seezero_api_key
+
+ota:
+  - platform: esphome
+    encryption: {}      # uses the api encryption key
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  output_power: 8.5dB   # C3 SuperMini boards often fail to connect at full power
+  ap: {}
+
+captive_portal:
+
+external_components:
+  - source:
+      type: git
+      url: https://github.com/f1ux-capacitor/seezero-ihd-tap
+    components: [seezero]
+
+uart:
+  id: ihd_uart
+  rx_pin: GPIO20        # C3 pin 20  <-  IHD J7 middle pin (TXD). C3 TX is NOT connected.
+  baud_rate: 3573360    # measured on the link; it is not a standard rate
+  rx_buffer_size: 8192  # the start-up burst arrives quickly
+
+seezero:
+  id: ihd
+  uart_id: ihd_uart
+
+sensor:
+  - platform: seezero
+    # Electricity
+    electricity_power:
+      name: Electricity power
+    electricity_import:
+      name: Electricity import
+    electricity_export:
+      name: Electricity export
+    electricity_today:
+      name: Electricity today
+    electricity_yesterday:
+      name: Electricity yesterday
+    electricity_this_week:
+      name: Electricity this week
+    electricity_this_month:
+      name: Electricity this month
+    electricity_cost_today:
+      name: Electricity cost today
+    electricity_cost_yesterday:
+      name: Electricity cost yesterday
+    electricity_cost_this_week:
+      name: Electricity cost this week
+    electricity_cost_this_month:
+      name: Electricity cost this month
+    electricity_unit_rate:
+      name: Electricity unit rate
+    electricity_standing_charge:
+      name: Electricity standing charge
+    # Gas
+    gas_meter:
+      name: Gas meter
+    gas_today:
+      name: Gas today
+    gas_yesterday:
+      name: Gas yesterday
+    gas_this_week:
+      name: Gas this week
+    gas_this_month:
+      name: Gas this month
+    gas_cost_today:
+      name: Gas cost today
+    gas_cost_yesterday:
+      name: Gas cost yesterday
+    gas_cost_this_week:
+      name: Gas cost this week
+    gas_cost_this_month:
+      name: Gas cost this month
+    gas_unit_rate:
+      name: Gas unit rate
+    gas_unit_rate_m3:
+      name: Gas unit rate per m³
+    gas_standing_charge:
+      name: Gas standing charge
+    gas_calorific_value:
+      name: Gas calorific value
+    gas_conversion_factor:
+      name: Gas conversion factor
+    # Diagnostics
+    frames_ok:
+      name: Link frames received
+    crc_errors:
+      name: Link CRC errors
+
+  - platform: wifi_signal
+    name: WiFi signal
+    update_interval: 300s
+
+  - platform: internal_temperature
+    name: C3 temperature
+    update_interval: 300s
+
+text_sensor:
+  - platform: seezero
+    supplier_message:
+      name: Supplier message
+
+binary_sensor:
+  - platform: template
+    name: Meter data stale
+    device_class: problem
+    entity_category: diagnostic
+    lambda: return (millis() - id(ihd).last_frame_ms()) > 300000;   # nothing for 5 minutes
