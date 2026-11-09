@@ -103,6 +103,12 @@ PRs and captures welcome:
 
 The link also carries your **MPAN and MPRN** (attribute `0x0307`) and device addresses. The firmware ignores them and `decode_capture.py` never prints them. If you share a capture, sanitise it first.
 
+## Credits and thanks
+
+* **[mmillmor/geo_home](https://github.com/mmillmor/geo_home)**: the Geo Home integration for Home Assistant. For years it brought SeeZero and Trio data into Home Assistant through the Geo Home cloud, and it's what this project replaces now that the cloud API has gone. Thank you.
+* **[nadnerb33/geotrio2mqtt](https://github.com/nadnerb33/geotrio2mqtt)**: found that a geo IHD's Zigbee chip can be read over its internal UART, which is what started this.
+* **[gaza1994/Geo-Trio-ii-tap](https://github.com/gaza1994/Geo-Trio-ii-tap)**: decoded the Trio II's Smart Energy attributes and tariff. The same attribute map applies to the SeeZero.
+
 ## Licence
 
 MIT. See [LICENSE](LICENSE).
