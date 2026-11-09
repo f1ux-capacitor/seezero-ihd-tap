@@ -82,9 +82,11 @@ external_components:
 
 The Energy dashboard prices usage only. The *cost today / week / month* sensors also include standing charges, so they match the bill. Both are correct; they answer different questions.
 
-### In Home Assistant
+### Example dashboard
 
 ![Home Assistant dashboard](images/dashboard-example.png)
+
+[`examples/dashboard.yaml`](examples/dashboard.yaml) is the dashboard above: a power gauge (negative while exporting), a 24-hour power graph, electricity and gas tiles including the tariff, daily bar charts and link health. To use it, go to **Settings → Dashboards → Add dashboard → New dashboard from scratch**, open it, then **✏️ → ⋮ → Raw configuration editor**, and paste it in. The daily charts fill in as Home Assistant builds up history.
 
 ## Tools
 
