@@ -82,6 +82,12 @@ external_components:
 
 The Energy dashboard prices usage only. The *cost today / week / month* sensors also include standing charges, so they match the bill. Both are correct; they answer different questions.
 
+### Example dashboard
+
+[`examples/dashboard.yaml`](examples/dashboard.yaml) is a ready-made dashboard: a power gauge (negative while exporting), a 24-hour power graph, electricity and gas tiles, daily bar charts and link health. Create a new dashboard, open the **Raw configuration editor** and paste it in.
+
+![Example dashboard](images/dashboard-example.png)
+
 ## Tools
 
 * [`tools/seezero_sniffer/`](tools/seezero_sniffer): an Arduino sketch for the C3. It measures the baud rate on any pin (RMT pulse timing) and prints one line per message. This is how the link was found.

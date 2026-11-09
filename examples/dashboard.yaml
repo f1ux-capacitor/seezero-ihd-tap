@@ -1,0 +1,166 @@
+# Example Home Assistant dashboard for the SeeZero IHD tap.
+#
+# Settings > Dashboards > Add dashboard > New dashboard from scratch, open it,
+# then pencil (Edit) > three dots > Raw configuration editor, and paste this in.
+# Entity IDs assume the ESPHome device is called "SeeZero IHD". If yours differ,
+# find them under Settings > Devices & services > Entities (search "seezero").
+
+title: SeeZero energy
+views:
+  - title: Energy
+    path: seezero
+    type: sections
+    max_columns: 3
+    sections:
+      # ---------------- live power ----------------
+      - type: grid
+        cards:
+          - type: heading
+            heading: Electricity now
+          - type: gauge
+            entity: sensor.seezero_ihd_electricity_power
+            name: Power (negative = exporting)
+            min: -4000
+            max: 6000
+            needle: true
+            segments:
+              - from: -4000
+                color: "#2e7d32"
+              - from: 0
+                color: "#43a047"
+              - from: 1000
+                color: "#f9a825"
+              - from: 3000
+                color: "#e53935"
+            grid_options:
+              columns: full
+          - type: history-graph
+            title: Power, last 24 hours
+            hours_to_show: 24
+            entities:
+              - entity: sensor.seezero_ihd_electricity_power
+                name: Power
+            grid_options:
+              columns: full
+
+      # ---------------- electricity ----------------
+      - type: grid
+        cards:
+          - type: heading
+            heading: Electricity
+          - type: tile
+            entity: sensor.seezero_ihd_electricity_today
+            name: Today
+          - type: tile
+            entity: sensor.seezero_ihd_electricity_cost_today
+            name: Cost today
+          - type: tile
+            entity: sensor.seezero_ihd_electricity_yesterday
+            name: Yesterday
+          - type: tile
+            entity: sensor.seezero_ihd_electricity_cost_yesterday
+            name: Cost yesterday
+          - type: tile
+            entity: sensor.seezero_ihd_electricity_this_month
+            name: This month
+          - type: tile
+            entity: sensor.seezero_ihd_electricity_cost_this_month
+            name: Cost this month
+          - type: tile
+            entity: sensor.seezero_ihd_electricity_import
+            name: Import meter
+          - type: tile
+            entity: sensor.seezero_ihd_electricity_export
+            name: Export meter
+          - type: tile
+            entity: sensor.seezero_ihd_electricity_unit_rate
+            name: Unit rate
+          - type: tile
+            entity: sensor.seezero_ihd_electricity_standing_charge
+            name: Standing charge
+          - type: statistics-graph
+            title: Electricity per day
+            entities:
+              - entity: sensor.seezero_ihd_electricity_import
+                name: Import
+              - entity: sensor.seezero_ihd_electricity_export
+                name: Export
+            stat_types:
+              - change
+            period: day
+            days_to_show: 14
+            chart_type: bar
+            grid_options:
+              columns: full
+
+      # ---------------- gas ----------------
+      - type: grid
+        cards:
+          - type: heading
+            heading: Gas
+          - type: tile
+            entity: sensor.seezero_ihd_gas_today
+            name: Today
+          - type: tile
+            entity: sensor.seezero_ihd_gas_cost_today
+            name: Cost today
+          - type: tile
+            entity: sensor.seezero_ihd_gas_yesterday
+            name: Yesterday
+          - type: tile
+            entity: sensor.seezero_ihd_gas_cost_yesterday
+            name: Cost yesterday
+          - type: tile
+            entity: sensor.seezero_ihd_gas_this_month
+            name: This month
+          - type: tile
+            entity: sensor.seezero_ihd_gas_cost_this_month
+            name: Cost this month
+          - type: tile
+            entity: sensor.seezero_ihd_gas_meter
+            name: Gas meter
+          - type: tile
+            entity: sensor.seezero_ihd_gas_unit_rate
+            name: Unit rate
+          - type: tile
+            entity: sensor.seezero_ihd_gas_standing_charge
+            name: Standing charge
+          - type: tile
+            entity: sensor.seezero_ihd_gas_calorific_value
+            name: Calorific value
+          - type: statistics-graph
+            title: Gas per day (m³)
+            entities:
+              - entity: sensor.seezero_ihd_gas_meter
+                name: Gas
+            stat_types:
+              - change
+            period: day
+            days_to_show: 14
+            chart_type: bar
+            grid_options:
+              columns: full
+
+      # ---------------- link health ----------------
+      - type: grid
+        cards:
+          - type: heading
+            heading: IHD link
+          - type: tile
+            entity: binary_sensor.seezero_ihd_meter_data_stale
+            name: Meter data stale
+          - type: tile
+            entity: sensor.seezero_ihd_supplier_message
+            name: Supplier message
+          - type: tile
+            entity: sensor.seezero_ihd_wifi_signal
+            name: Wi-Fi signal
+          - type: tile
+            entity: sensor.seezero_ihd_c3_temperature
+            name: C3 temperature
+          - type: tile
+            entity: sensor.seezero_ihd_link_crc_errors
+            name: CRC errors
+          - type: tile
+            entity: sensor.seezero_ihd_link_frames_received
+            name: Frames received
