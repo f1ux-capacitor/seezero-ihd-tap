@@ -51,6 +51,8 @@ Measure before you solder. Voltages, how to confirm the data pin with the includ
 
 ![Wiring](images/wiring.png)
 
+![Finished install](images/finished-install.jpg)
+
 ## Firmware (ESPHome)
 
 1. In Home Assistant, install the **ESPHome Device Builder** add-on and open it.

@@ -64,6 +64,8 @@ One bit = 0.2798 us  =>  about 3573360 baud.  100% of pulses are whole bits.
 | J7 middle (TXD) | GPIO20 |
 | | TX/GPIO21: **not connected** (receive only) |
 
+![Finished install](../images/finished-install.jpg)
+
 Use 30 AWG silicone wire. Insulate both sides of the C3 (Kapton) and every joint, keep the C3 and its wires away from the antenna areas (the plain green zones at the board edges and the UFL connectors), and make sure nothing pulls on the J7 joints when the case closes.
 
 ## Power and Wi-Fi notes
