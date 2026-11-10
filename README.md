@@ -17,7 +17,7 @@ All of it matched the IHD's own screens:
 
 | | Electricity | Gas |
 |---|---|---|
-| Live power | every 10 s (W, signed) | n/a |
+| Live power | every 10 s, in W, **negative while exporting** (confirmed with solar) | n/a |
 | Meter reading | import **and export** kWh | m³ |
 | Today / yesterday / this week / this month | kWh and £ | kWh and £ |
 | Tariff, from the meter | unit rate, standing charge | unit rate (per kWh and per m³), standing charge, calorific value, conversion factor |
@@ -100,7 +100,6 @@ The Energy dashboard prices usage only. The *cost today / week / month* sensors 
 
 PRs and captures welcome:
 
-* **Solar export:** live power is a signed value and should go negative while exporting, but that hasn't been captured yet.
 * **Gas daily values** (today kWh/£) arrive in the start-up burst and also refresh on their own. The exact interval hasn't been measured.
 * **Message types `01`, `A1`, `A2`, `DA`, `E0`** look like link housekeeping. Their meaning is unknown.
 * **J6 and J13:** J13 is probably the RT1062 debug console. J6's role is unknown.

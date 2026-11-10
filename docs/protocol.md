@@ -60,7 +60,7 @@ assert crc16_arc(frame[2:-2]) == (frame[-2] << 8 | frame[-1])
 |---|---|---|---|---|
 | `0702/0000` CurrentSummationDelivered | import kWh | meter m³ | × mult ÷ div (div = 1000) | elec 10 s, gas 120 s |
 | `0702/0001` CurrentSummationReceived | **export kWh** | | ÷ 1000 | 10 s |
-| `0702/0400` InstantaneousDemand | live power | | **signed** int24, ×1000÷div → W | 10 s |
+| `0702/0400` InstantaneousDemand | live power | | **signed** int24, ×1000÷div → W; negative while exporting (confirmed) | 10 s |
 | `0702/0401` / `0403` | today / yesterday kWh | | ÷ 1000 | 10 s / start-up |
 | `0702/0430` / `0440` | this week / this month kWh | | ÷ 1000 | 10 s |
 | `0702/0420…042C` | days 2–8 ago kWh | | ÷ 1000 | start-up |
