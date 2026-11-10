@@ -53,6 +53,8 @@ Measure before you solder. Voltages, how to confirm the data pin with the includ
 
 ![Finished install](images/finished-install.jpg)
 
+The C3 SuperMini fits entirely inside the IHD. The back goes on as normal, there are no extra cables, and nothing is visible from the outside. It powers on and off with the IHD.
+
 ## Firmware (ESPHome)
 
 1. In Home Assistant, install the **ESPHome Device Builder** add-on and open it.
