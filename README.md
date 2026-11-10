@@ -23,7 +23,7 @@ All of it matched the IHD's own screens:
 | Tariff, from the meter | unit rate, standing charge | unit rate (per kWh and per m³), standing charge, calorific value, conversion factor |
 | Other | supplier messages ("Welcome to EDF Energy"), link frame and CRC-error counters, a "meter data stale" alarm | |
 
-Costs include the standing charge and match the bill. The tariff, calorific value and conversion factor are saved in the C3's flash, so they survive a C3 reboot even when the IHD (which has a battery) doesn't restart and resend them.
+Costs include the standing charge and match the bill. The "yesterday" values update by themselves just after midnight. The tariff, calorific value and conversion factor are saved in the C3's flash, so they survive a C3 reboot even when the IHD (which has a battery) doesn't restart and resend them.
 
 ## How it works
 
@@ -100,7 +100,6 @@ PRs and captures welcome:
 
 * **Solar export:** live power is a signed value and should go negative while exporting, but that hasn't been captured yet.
 * **Gas daily values** (today kWh/£) arrive in the start-up burst and also refresh on their own. The exact interval hasn't been measured.
-* **Midnight:** the "yesterday" values and tariff probably resend just after midnight (they do on the Trio II); not yet confirmed. Until then, a full IHD restart (USB **and** battery) fills them in.
 * **Message types `01`, `A1`, `A2`, `DA`, `E0`** look like link housekeeping. Their meaning is unknown.
 * **J6 and J13:** J13 is probably the RT1062 debug console. J6's role is unknown.
 * **Other SeeZero firmware or board revisions, other suppliers, and time-of-use tariffs** haven't been tested.

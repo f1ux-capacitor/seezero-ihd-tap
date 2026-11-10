@@ -125,7 +125,8 @@ The body is a fixed-layout structure (the host's own struct, not the ZCL wire fo
 * Electricity power, readings, today/week/month: every **10 s**.
 * Electricity costs: every **~15 s**.
 * Gas meter reading (m³): every **120 s** (it only changes every 30 min).
-* Tariff, gas CV/CF, gas daily kWh and costs, and all history: in a burst **~15–40 s after the IHD powers up**. On the Trio II these also repeat just after midnight; not yet confirmed here.
+* Tariff, gas CV/CF, gas daily kWh and costs, and all history: in a burst **~15–40 s after the IHD powers up**.
+* "Yesterday" values (`0403`, `0C03`, `051E`) refresh by themselves **just after midnight** (confirmed). Gas today and cost also refresh periodically during the day.
 
 ## Cross-checks against the IHD screen
 
